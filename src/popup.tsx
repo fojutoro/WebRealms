@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import utils from "./scripts"
 import "./scss/popup.scss"
 
+
 function IndexPopup() {
   const [data, setData] = useState({
     url: '',
@@ -10,7 +11,7 @@ function IndexPopup() {
   chrome.runtime.sendMessage({ action: 'getInitialUrl' });
   chrome.runtime.onMessage.addListener((message) => {
     if (message.action === 'urlUpdate') {
-      setData({...data, url: message.url});
+      setData((data) => ({ ...data, url: message.url }));
     }
   });
   }, []);
@@ -22,7 +23,7 @@ function IndexPopup() {
           <img src="https://picsum.photos/20/30" alt="coin image"/>
           <p className="coins-text"></p>
         </div>
-        <p className="url">{utils.parseUrlDomain(data.url)}</p>
+        {data.url && <p className="url">{utils.parseUrlDomain(data.url)}</p>}
         <img src="https://picsum.photos/30/30" alt="settings"/>
       </div>
     </div>
