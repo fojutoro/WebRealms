@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import utils from "./scripts"
 import "./scss/popup.scss"
 
 function IndexPopup() {
@@ -16,16 +17,15 @@ function IndexPopup() {
   }, []);
   
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16,
-        width: 250,
-        height: 400,
-        borderRadius: 25
-      }}>
-        <h1>{data}</h1>
+    <div className="mainDiv">
+      <div className="header">
+        <div className="coins">
+          <img src="https://picsum.photos/20/30" alt="coin image"/>
+          <p className="coins-text"></p>
+        </div>
+        <p className="url">{utils.parseUrlDomain(data)}</p>
+        <img src="https://picsum.photos/30/30" alt="settings"/>
+      </div>
     </div>
   )
 }
