@@ -3,15 +3,14 @@ import utils from "./scripts"
 import "./scss/popup.scss"
 
 function IndexPopup() {
-  const [data, setData] = useState("")
+  const [data, setData] = useState({
+    url: '',
+  });
   useEffect(() => {
   chrome.runtime.sendMessage({ action: 'getInitialUrl' });
   chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === 'urlEstablish') {
-      setData(message.url);
-    }
-    else if (message.action === 'urlUpdated') {
-      setData(message.url);
+    if (message.action === 'urlUpdate') {
+      setData({...data, url: message.url});
     }
   });
   }, []);
