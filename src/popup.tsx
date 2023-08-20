@@ -22,7 +22,7 @@ function IndexPopup() {
           <img src="https://picsum.photos/20/30" alt="coin image"/>
           <p className="coins-text"></p>
         </div>
-        <p className="url">{utils.parseUrlDomain(data)}</p>
+        <p className="url">{utils.parseUrlDomain(data.url)}</p>
         <img src="https://picsum.photos/30/30" alt="settings"/>
       </div>
     </div>
